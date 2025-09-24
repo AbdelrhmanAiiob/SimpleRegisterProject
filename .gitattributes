@@ -1,34 +1,39 @@
 # ==============================
-# Force main languages / de-emphasize frontend
+# Force main languages / emphasize backend (Python + Django)
 # ==============================
 
 # Python (main language)
 *.py linguist-language=Python
 
-# Django templates (HTML)
+# Treat Django templates as HTML (keeps template files visible)
 templates/**.html linguist-language=HTML
 **/templates/**.html linguist-language=HTML
 *.html linguist-language=HTML
 
-# Frontend files (still present, but excluded from language stats)
-# Exclude JS and compiled assets directories from Linguist language stats
+# ==============================
+# De-emphasize frontend: exclude JS/CSS and build artifacts from language stats
+# ==============================
+# Exclude node modules and build artifacts
 node_modules/** linguist-vendored=true linguist-detectable=false
 build/** linguist-detectable=false
 dist/** linguist-detectable=false
-static/**/js/** linguist-detectable=false
-assets/**/js/** linguist-detectable=false
-**/static/js/** linguist-detectable=false
 
-# If you keep frontend code inside a specific folder (adjust the path if needed)
-# e.g. frontend/, client/, webapp/ -> treat as non-relevant for language stats
+# Exclude static frontend asset folders (common Django layout)
+static/**/js/** linguist-detectable=false
+static/**/css/** linguist-detectable=false
+assets/**/js/** linguist-detectable=false
+assets/**/css/** linguist-detectable=false
+**/static/js/** linguist-detectable=false
+**/static/css/** linguist-detectable=false
+
+# Exclude common frontend top-level folders if present
 frontend/** linguist-detectable=false
 client/** linguist-detectable=false
 webapp/** linguist-detectable=false
 
-# CSS / JS files left out of stats (if you prefer to reduce their weight globally,
-# uncomment the next two lines — but be careful: this hides ALL .js/.css from stats)
-#*.js linguist-detectable=false
-#*.css linguist-detectable=false
+# Also hide all .js and .css files from language stats (uncomment to enable globally)
+*.js linguist-detectable=false
+*.css linguist-detectable=false
 
 # ==============================
 # Small touch for docs
@@ -36,30 +41,10 @@ webapp/** linguist-detectable=false
 *.md linguist-language=Markdown
 
 # ==============================
-# Ignore non-relevant files
+# Ignore non-relevant files (configs, envs, lock files)
 # ==============================
 *.json linguist-detectable=false
 *.txt linguist-detectable=false
 *.sh linguist-detectable=false
 *.lock linguist-detectable=false
-*.ini linguist-detectable=false
-*.cfg linguist-detectable=false
-
-# ==============================
-# Treat Django migrations as non-relevant
-# ==============================
-*/migrations/*.py linguist-detectable=false
-
-# ==============================
-# Mark obvious vendor files as vendored (to exclude them)
-# ==============================
-venv/** linguist-vendored=true linguist-detectable=false
-.env/** linguist-detectable=false
-
-# ==============================
-# Optional: small helper file to hint "Django" (commented out)
-# ==============================
-# If you want to use the "trick" to show "Django" as a language name,
-# you can add a tiny dummy file named `dummy.django` to the repo
-# and uncomment the line below. Note: this is a visible hack.
-# dummy.django linguist-language=Django
+*.ini linguist-detectable=*
