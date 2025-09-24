@@ -1,39 +1,31 @@
 # ==============================
-# Force main languages / emphasize backend (Python + Django)
+# Emphasize backend (Python + Django)
 # ==============================
 
-# Python (main language)
+# Python main language
 *.py linguist-language=Python
 
-# Treat Django templates as HTML (keeps template files visible)
+# Treat Django as separate (trick via dummy file)
+dummy.django linguist-language=Django
+
+# Django templates (HTML)
 templates/**.html linguist-language=HTML
 **/templates/**.html linguist-language=HTML
 *.html linguist-language=HTML
 
 # ==============================
-# De-emphasize frontend: exclude JS/CSS and build artifacts from language stats
+# Control frontend contribution (visible but limited)
 # ==============================
-# Exclude node modules and build artifacts
+
+# Keep frontend visible but not overweight
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+
+# Reduce heavy asset folders (images, compiled, vendored)
 node_modules/** linguist-vendored=true linguist-detectable=false
 build/** linguist-detectable=false
 dist/** linguist-detectable=false
-
-# Exclude static frontend asset folders (common Django layout)
-static/**/js/** linguist-detectable=false
-static/**/css/** linguist-detectable=false
-assets/**/js/** linguist-detectable=false
-assets/**/css/** linguist-detectable=false
-**/static/js/** linguist-detectable=false
-**/static/css/** linguist-detectable=false
-
-# Exclude common frontend top-level folders if present
-frontend/** linguist-detectable=false
-client/** linguist-detectable=false
-webapp/** linguist-detectable=false
-
-# Also hide all .js and .css files from language stats (uncomment to enable globally)
-*.js linguist-detectable=false
-*.css linguist-detectable=false
+static/**/vendor/** linguist-detectable=false
 
 # ==============================
 # Small touch for docs
@@ -41,10 +33,9 @@ webapp/** linguist-detectable=false
 *.md linguist-language=Markdown
 
 # ==============================
-# Ignore non-relevant files (configs, envs, lock files)
+# Ignore configs & irrelevant
 # ==============================
 *.json linguist-detectable=false
 *.txt linguist-detectable=false
 *.sh linguist-detectable=false
-*.lock linguist-detectable=false
-*.ini linguist-detectable=*
+*.lock lin*
