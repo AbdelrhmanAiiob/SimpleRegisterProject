@@ -1,28 +1,33 @@
-# =========================
-# GitHub Linguist overrides
-# =========================
+# ==============================
+# Force main languages
+# ==============================
 
-# Ignore Django migrations
-*/migrations/* linguist-detectable=false
+# Python (main language)
+*.py linguist-language=Python
 
-# Ignore static files
-*.css linguist-detectable=false
-*.js linguist-detectable=false
-*.html linguist-detectable=false
-*.map linguist-detectable=false
+# Django templates
+*.html linguist-language=HTML
 
-# Ignore media/uploads
-media/* linguist-detectable=false
+# Frontend files
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
 
-# Ignore config & build files
-*.sh linguist-detectable=false
-*.txt linguist-detectable=false
+# ==============================
+# Small touch for docs
+# ==============================
+*.md linguist-language=Markdown
+
+# ==============================
+# Ignore non-relevant files
+# ==============================
 *.json linguist-detectable=false
-*.md linguist-detectable=false
-*.yml linguist-detectable=false
-*.yaml linguist-detectable=false
+*.txt linguist-detectable=false
+*.sh linguist-detectable=false
+*.lock linguist-detectable=false
+*.ini linguist-detectable=false
+*.cfg linguist-detectable=false
 
-# Ignore environment files
-*.env linguist-detectable=false
-.venv/* linguist-detectable=false
-venv/* linguist-detectable=false
+# ==============================
+# Treat Django migrations as non-relevant
+# ==============================
+*/migrations/*.py linguist-detectable=false
