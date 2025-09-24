@@ -1,0 +1,28 @@
+# =========================
+# GitHub Linguist overrides
+# =========================
+
+# Ignore Django migrations
+*/migrations/* linguist-detectable=false
+
+# Ignore static files
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+*.html linguist-detectable=false
+*.map linguist-detectable=false
+
+# Ignore media/uploads
+media/* linguist-detectable=false
+
+# Ignore config & build files
+*.sh linguist-detectable=false
+*.txt linguist-detectable=false
+*.json linguist-detectable=false
+*.md linguist-detectable=false
+*.yml linguist-detectable=false
+*.yaml linguist-detectable=false
+
+# Ignore environment files
+*.env linguist-detectable=false
+.venv/* linguist-detectable=false
+venv/* linguist-detectable=false
