@@ -1,0 +1,162 @@
+{% extends 'parent.html' %} 
+
+{% block content %} 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Welcome Back, Please Login To Join Into The Best Site In The World."
+    />
+    <meta name="keywords" content="Python, JS, Django, Back-End, CSS, Html" />
+    <meta name="author" content="AIIOB" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'pages/my_profile/css/style.css'%}"
+    />
+    <title>Website</title>
+  </head>
+  <body>
+    {% if messages %} 
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} text-center" role="alert">
+        <p>{{message}}</p>
+      </div>
+      {% endfor %}
+    {% endif %}
+        <!-- Toast MSG -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+      <div class="toast-container position-absolute top-0 end-0 p-3">
+        <div
+          class="toast"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <img
+              src="{% static 'navbar/images/page_logo.jpg' %}"
+              class="rounded me-2"
+              width="50px"
+            />
+            <strong class="me-auto">Website</strong>
+            <small>Just now</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body">
+            Welcome To Our Site {{request.user|capfirst}}, Have Fun.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toastEl = document.querySelector(".toast");
+        if (toastEl) {
+          const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+          toast.show();
+        }
+      });
+    </script>
+    <section class="vh-100" style="background-color: #f4f5f7">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: 0.5rem">
+              <div class="row g-0">
+                <div
+                  class="col-md-4 gradient-custom text-center text-white"
+                  style="
+                    border-top-left-radius: 0.5rem;
+                    border-bottom-left-radius: 0.5rem;
+                  "
+                >
+                  <img
+                    src="{% static 'navbar/images/profile.png' %}"
+                    alt="Avatar"
+                    class="img-fluid my-5"
+                    style="width: 200px"
+                  />
+                  <h5>{{request.user|capfirst}}</h5>
+                  <i class="far fa-edit mb-5"></i>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body p-4">
+                    <h6>Information</h6>
+                    <hr class="mt-0 mb-4" />
+                    <div class="row pt-1">
+                      <div class="col-6 mb-3">
+                        <h6>Email</h6>
+                        <p class="text-muted">{{request.user.email|capfirst}}</p>
+                      </div>
+                      <div class="col-6 mb-3">
+                        <h6>Phone</h6>
+                        <p class="text-muted">{{request.user.phone_number}}</p>
+                      </div>
+                    </div>
+                    <h6>Projects</h6>
+                    <hr class="mt-0 mb-4" />
+                    <div class="row pt-1">
+                      <div class="col-6 mb-3">
+                        {% if request.user.username == 'aiiob' %}
+                        <h6>Recent</h6>
+                        <p class="text-muted">Page Author</p>
+                        
+                        {% else %}
+                        <h6>Recent</h6>
+                        <p class="text-muted">Just A User</p>
+                        {% endif%}
+                      </div>
+                      <div class="col-6 mb-3">
+                        <h6>Most Viewed</h6>
+                        <p class="text-muted">Dolor sit amet</p>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-start">
+                      <a href="#!"
+                        ><i class="fab fa-facebook-f fa-lg me-3"></i
+                      ></a>
+                      <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                      <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+{% endblock content %}

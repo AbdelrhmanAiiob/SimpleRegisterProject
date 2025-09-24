@@ -1,0 +1,25 @@
+{% extends 'parent.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'pages/index/css/style.css' %}">
+  <title>Website</title>
+</head>
+<body>
+  <div class="welcome-section">
+    <div class="welcome-box animate__animated animate__zoomIn">
+      <p class="mt-3">We’re glad to have you here 🚀</p>
+      <img src="{% static 'navbar/images/welcome.png' %}" width="250"
+          class="mb-4 animate__animated animate__pulse animate__infinite" alt="welcome">
+          <br>
+      <a href="{% url 'profile' %}" class="btn btn-dark btn-lg mt-4">Go to Profile</a>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock content %}
