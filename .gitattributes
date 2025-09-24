@@ -1,16 +1,34 @@
 # ==============================
-# Force main languages
+# Force main languages / de-emphasize frontend
 # ==============================
 
 # Python (main language)
 *.py linguist-language=Python
 
-# Django templates
+# Django templates (HTML)
+templates/**.html linguist-language=HTML
+**/templates/**.html linguist-language=HTML
 *.html linguist-language=HTML
 
-# Frontend files
-*.css linguist-language=CSS
-*.js linguist-language=JavaScript
+# Frontend files (still present, but excluded from language stats)
+# Exclude JS and compiled assets directories from Linguist language stats
+node_modules/** linguist-vendored=true linguist-detectable=false
+build/** linguist-detectable=false
+dist/** linguist-detectable=false
+static/**/js/** linguist-detectable=false
+assets/**/js/** linguist-detectable=false
+**/static/js/** linguist-detectable=false
+
+# If you keep frontend code inside a specific folder (adjust the path if needed)
+# e.g. frontend/, client/, webapp/ -> treat as non-relevant for language stats
+frontend/** linguist-detectable=false
+client/** linguist-detectable=false
+webapp/** linguist-detectable=false
+
+# CSS / JS files left out of stats (if you prefer to reduce their weight globally,
+# uncomment the next two lines — but be careful: this hides ALL .js/.css from stats)
+#*.js linguist-detectable=false
+#*.css linguist-detectable=false
 
 # ==============================
 # Small touch for docs
@@ -31,3 +49,17 @@
 # Treat Django migrations as non-relevant
 # ==============================
 */migrations/*.py linguist-detectable=false
+
+# ==============================
+# Mark obvious vendor files as vendored (to exclude them)
+# ==============================
+venv/** linguist-vendored=true linguist-detectable=false
+.env/** linguist-detectable=false
+
+# ==============================
+# Optional: small helper file to hint "Django" (commented out)
+# ==============================
+# If you want to use the "trick" to show "Django" as a language name,
+# you can add a tiny dummy file named `dummy.django` to the repo
+# and uncomment the line below. Note: this is a visible hack.
+# dummy.django linguist-language=Django
