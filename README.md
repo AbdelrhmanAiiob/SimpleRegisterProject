@@ -1,4 +1,4 @@
-# Simple Register Page. (Hints)=> First Time Write **'Markdown'**
+# Simple Register Page. (Hints)
 
   ## The Start Data.
 
